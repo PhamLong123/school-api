@@ -2,7 +2,6 @@ package com.example.schoolapi.config;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,7 +12,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.example.schoolapi.dto.LoginRequest;
 import com.example.schoolapi.utils.JwtUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -59,7 +57,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 String accessTokenJson = new ObjectMapper().writeValueAsString(jwtUtils.generateToken(auth));
                 res.setContentType("application/json");
                 res.getWriter().write(accessTokenJson);
-
             }
         }
     }

@@ -36,17 +36,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto signup(UserDto userDto) {
 
-        Role userRole;
+        Role userRole = roleRepository.findByRole(UserRole.STUDENT);;
         Optional<User> user = userRepository.findByEmail(userDto.getEmail());
         if (!user.isPresent()) {
-            if (userDto.getRoles().toString()=="Parents") {
+            String role = userDto.getRoles().get(0).getRole();
+            if (role.equals("PARENTS")) {
                 userRole = roleRepository.findByRole(UserRole.PARENTS);
             } 
-            if (userDto.getRoles().toString()=="Student") {
+            if (role.equals("TEACHER")) {
                 userRole = roleRepository.findByRole(UserRole.TEACHER);
-            }
-            else {
-                userRole = roleRepository.findByRole(UserRole.STUDENT);
             }
 
             User newuser = new User().setEmail(userDto.getEmail())
